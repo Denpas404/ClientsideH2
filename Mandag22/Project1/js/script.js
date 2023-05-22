@@ -31,8 +31,9 @@ const createEvt = (fields) => {
                             playerTwoScore++;
                             playerTwo.innerHTML = playerTwoScore;                            
                         }
-                        
-                }}, 0); 
+                       return; 
+                }}, 100); 
+                
                 playerXTurn = !playerXTurn;
             }
         });
