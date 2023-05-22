@@ -1,0 +1,11 @@
+#imgBulb {    
+    transition: all 500ms;
+}
+
+.tiltDown {
+    transform: rotate(180deg);
+}
+
+.tiltUp {
+    transform: rotate(360deg);    
+}
