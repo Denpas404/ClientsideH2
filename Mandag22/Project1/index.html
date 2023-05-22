@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,34 +8,35 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
     <div>
-        
+
     </div>
-    
+
     <div class="wrapper">
         <p id="clock"></p>
         <div class="player">
-            <p>Player 1</p>
-            <p>Player 2</p></div>
-        <div class="gameboard">
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>
-            <button class="field"></button>            
-        </div>          
+            <div>
+                <p>Player 1:</p>
+                <p id="playerOne"></p>
+            </div>
+            <div>
+                <p>Player 2:</p>
+                <p id="playerTwo"></p>
+            </div>
+        </div>
+        <div class="gameboard"> </div>
         <div class="options">
             <button id="reset">Reset</button>
             <button id="start">Start</button>
-
-        </div>      
+        </div>
+        <div>
+            <ul id="apiList"></ul>
+        </div>
     </div>
     
     <script defer src="./js/script.js"></script>
 </body>
+
 </html>
