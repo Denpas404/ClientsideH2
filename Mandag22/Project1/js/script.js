@@ -52,6 +52,7 @@ const createEvt = (fields) => {
     });
 };
 
+/* Gammel version af isWinner() 
 const isWinner = () => {
     // Tjekker hver række for en vinder
     for (let row = 0; row < 3; row++) {
@@ -89,6 +90,50 @@ const isWinner = () => {
     // Returnerer false hvis der ikke er en vinder
     return false;
 };
+*/
+
+const isWinner = () => {
+    const board = [];
+    for (let row = 0; row < 3; row++) {
+      board[row] = [];
+      for (let col = 0; col < 3; col++) {
+        board[row][col] = document.querySelector(`#r${row}c${col}`).innerHTML;
+      }
+    }
+  
+    // Tjekker rækker og kolonner
+    for (let i = 0; i < 3; i++) {
+      if (
+        board[i][0] !== "" &&
+        board[i][0] === board[i][1] &&
+        board[i][0] === board[i][2]
+      ) {
+        return true; // Række vinder
+      }
+      if (
+        board[0][i] !== "" &&
+        board[0][i] === board[1][i] &&
+        board[0][i] === board[2][i]
+      ) {
+        return true; // Kolonne vinder
+      }
+    }
+  
+    // Tjekker diagonalen
+    if (
+      (board[0][0] !== "" &&
+        board[0][0] === board[1][1] &&
+        board[0][0] === board[2][2]) ||
+      (board[0][2] !== "" &&
+        board[0][2] === board[1][1] &&
+        board[0][2] === board[2][0])
+    ) {
+      return true; // Diagonal vinder
+    }
+  
+    return false; // Ingen vinder
+  };
+
 
 const init = () => {
     // Genererer knapperne til spillepladen
@@ -121,6 +166,7 @@ resetbtn.addEventListener("click", () => {
     playerTwoScore = 0; // Nulstiller spiller 2's score til 0
     playerOne.innerHTML = playerOneScore; // Opdaterer spiller 1's score
     playerTwo.innerHTML = playerTwoScore; // Opdaterer spiller 2's score
+    //location.reload(); // Genindlæser siden
 });
 
 const newGameBtn = document.getElementById("startNewGame");
