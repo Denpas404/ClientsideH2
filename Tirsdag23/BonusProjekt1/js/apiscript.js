@@ -34,24 +34,23 @@
 const usersMap = new Map();
 
 fetch("https://reqres.in/api/users")
-  .then((response) => response.json())
+  .then((response) => response.json()) // Konverterer responsen til JSON-format
   .then((data) => {
-    data.data.forEach((user) => {
-      usersMap.set(user.id, {
-        firstName: user.first_name,
-        lastName: user.last_name,
-        email: user.email,
+    data.data.forEach((user) => { // Gennemløber  hvert brugerobjekt i data
+      usersMap.set(user.id, { // Gemmer brugerdata i usersMap med brugerens id som nøgle
+        firstName: user.first_name, // Gemmer brugerens fornavn
+        lastName: user.last_name, // Gemmer brugerens efternavn
+        email: user.email, // Gemmer brugerens email
       });
     });
 
-    usersMap.forEach((user, index) => {
-        // For hvert brugerobjekt i dataMap
+
+    usersMap.forEach((user, index) => { // For hvert brugerobjekt i dataMap
         let btn = document.createElement("button"); // Opret et button-element
   
         btn.innerHTML = user.firstName + " " + user.lastName; // Indstil indholdet af knappen til brugerens navn
   
-        btn.addEventListener("click", () => {
-          // Tilføj en klikhændelse til knappen
+        btn.addEventListener("click", () => { // Tilføj en klikhændelse til knappen
           const userDataString = JSON.stringify(user, null, 2); // Konverter brugerdata til en streng
           alert(userDataString); // Vis brugerdataen i en popup
         });
@@ -61,7 +60,7 @@ fetch("https://reqres.in/api/users")
       });
   })
   .catch((error) => {
-    console.log(error);
+    console.log(error); // Hvis der opstår en fejl, så log den i konsollen
   });
 
 fetch("https://jsonplaceholder.typicode.com/users")
