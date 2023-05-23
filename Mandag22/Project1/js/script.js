@@ -117,8 +117,20 @@ resetbtn.addEventListener("click", () => {
     });
     playerXTurn = true; // Nulstiller spillerens tur til X
     moves = 0; // Nulstiller antallet af træk til 0
+    playerOneScore = 0; // Nulstiller spiller 1's score til 0
+    playerTwoScore = 0; // Nulstiller spiller 2's score til 0
+    playerOne.innerHTML = playerOneScore; // Opdaterer spiller 1's score
+    playerTwo.innerHTML = playerTwoScore; // Opdaterer spiller 2's score
 });
 
-
+const newGameBtn = document.getElementById("startNewGame");
+newGameBtn.addEventListener("click", () => {
+    const fields = document.querySelectorAll(".field");
+    fields.forEach((btn) => {
+        btn.innerHTML = ""; // Rydder indholdet af hvert felt
+    });
+    playerXTurn = true; // Nulstiller spillerens tur til X
+    moves = 0; // Nulstiller antallet af træk til 0
+});
 
 

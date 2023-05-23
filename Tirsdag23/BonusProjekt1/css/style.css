@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    height: 100vh;
+    width: 1000px;
+    margin: 0 auto;
+}   
+
+.headerClock{
+    margin-top: 50px;
+    height: 100px;
+    width: 100%;
+    color: black;
+    font-size: 48px;
+    text-align: center;
+}
+
+.countdowns{
+    margin: 20px 0px;
+}

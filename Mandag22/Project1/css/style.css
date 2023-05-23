@@ -37,8 +37,14 @@ body{
     background-color: green;
     border: none;
     color: white;
-    font-size: 48px;
+    font-size: 48px
 }
+
+.field:hover{
+    background-color: darkgreen;
+    cursor: pointer;
+}
+
 .player{
     display: flex;
     justify-content: space-between;
