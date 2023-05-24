@@ -23,8 +23,8 @@ const createEvt = (fields) => {
       // "Hændelseslytter" for klik begivenheden på en knap
 
       if (e.target.innerHTML === "") {
-        const currentPlayer = playerXTurn ? "X" : "O";
-        e.target.innerHTML = currentPlayer;
+        const currentPlayer = playerXTurn ? "X" : "O"; // Ternary operator til at skifte spiller
+        e.target.innerHTML = currentPlayer; // Sætter knappens indhold til den aktuelle spiller
 
         moves++; // Øger antallet af træk med 1
 

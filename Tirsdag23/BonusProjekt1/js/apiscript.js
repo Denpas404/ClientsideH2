@@ -1,63 +1,39 @@
-//Array med brugere
-
-// const users = [];
-
-// fetch('https://reqres.in/api/users')
-//   .then((response) => response.json())
-//   .then((data) => {
-//     data.data.forEach((user) => {
-//       users.push(user.first_name, user.last_name, user.email);
-//     });
-
-//     users.forEach((user) => {
-//       console.log(user);
-//     });
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-
-//   fetch("https://jsonplaceholder.typicode.com/users")
-//     .then((response) => response.json())
-//     .then((data) => {
-//         data.forEach((user) => {
-//             users.push(user.name, user.username, user.email);
-//         });
-//         users.forEach((user) => {
-//             console.log(user);
-//         });
-//     })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Map med brugere
+
+////// Mapping med brugere
 const usersMap = new Map();
+
 
 fetch("https://reqres.in/api/users")
   .then((response) => response.json()) // Konverterer responsen til JSON-format
   .then((data) => {
-    data.data.forEach((user) => { // Gennemløber  hvert brugerobjekt i data
-      usersMap.set(user.id, { // Gemmer brugerdata i usersMap med brugerens id som nøgle
+    data.data.forEach((user) => {
+      // Gennemløber  hvert brugerobjekt i data
+      usersMap.set(user.id, {
+        // Gemmer brugerdata i usersMap med brugerens id som nøgle
         firstName: user.first_name, // Gemmer brugerens fornavn
         lastName: user.last_name, // Gemmer brugerens efternavn
         email: user.email, // Gemmer brugerens email
       });
     });
 
+    usersMap.forEach((user, index) => {
+      // For hvert brugerobjekt i dataMap
+      let btn = document.createElement("button"); // Opret et button-element
 
-    usersMap.forEach((user, index) => { // For hvert brugerobjekt i dataMap
-        let btn = document.createElement("button"); // Opret et button-element
-  
-        btn.innerHTML = user.firstName + " " + user.lastName; // Indstil indholdet af knappen til brugerens navn
-  
-        btn.addEventListener("click", () => { // Tilføj en klikhændelse til knappen
-          const userDataString = JSON.stringify(user, null, 2); // Konverter brugerdata til en streng
-          alert(userDataString); // Vis brugerdataen i en popup
-        });
-  
-        userContainer.appendChild(btn); // Tilføj knappen til brugerContainer
-        // userContainer.appendChild(document.createElement("br")); // Tilføj et linjeskift
+      btn.innerHTML = user.firstName + " " + user.lastName; // Indstil indholdet af knappen til brugerens navn
+
+      btn.addEventListener("click", () => {
+        // Tilføj en klikhændelse til knappen
+        const userDataString = JSON.stringify(user, null, 2); // Konverter brugerdata til en streng
+        alert(userDataString); // Vis brugerdataen i en popup
       });
+
+      userContainer.appendChild(btn); // Tilføj knappen til brugerContainer
+      // userContainer.appendChild(document.createElement("br")); // Tilføj et linjeskift
+    });
   })
   .catch((error) => {
     console.log(error); // Hvis der opstår en fejl, så log den i konsollen
@@ -88,11 +64,44 @@ fetch("https://jsonplaceholder.typicode.com/users")
 
       userContainer.appendChild(btn); // Tilføj knappen til brugerContainer
       // userContainer.appendChild(document.createElement("br")); // Tilføj et linjeskift
-    });   
+    });
   })
   .catch((error) => {
     console.log(error);
   });
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Array med brugere
+
+// const users = [];
+
+// fetch('https://reqres.in/api/users')
+//   .then((response) => response.json())
+//   .then((data) => {
+//     data.data.forEach((user) => {
+//       users.push(user.first_name, user.last_name, user.email);
+//     });
+
+//     users.forEach((user) => {
+//       console.log(user);
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => response.json())
+//     .then((data) => {
+//         data.forEach((user) => {
+//             users.push(user.name, user.username, user.email);
+//         });
+//         users.forEach((user) => {
+//             console.log(user);
+//         });
+//     })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,3 +145,6 @@ fetch("https://jsonplaceholder.typicode.com/users")
 //             // userContainer.appendChild(document.createElement("br")); // Tilføj et linjeskift
 //         });
 //     });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
