@@ -51,7 +51,7 @@ function countdown11() {
 
     let targetDate = new Date();
     targetDate.setHours(11);
-    targetDate.setMinutes(0);
+    targetDate.setMinutes(30);
     targetDate.setSeconds(0);
     let targetTime = targetDate.getTime();
 
