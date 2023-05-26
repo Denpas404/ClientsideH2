@@ -8,8 +8,8 @@ const swapiApi = (async function () {
   const cardContainer = document.getElementById("cardContainer");
 
   try {
-    const response = await fetch(baseUrl);
-    const menuData = await response.json();
+    const data = await fetch(baseUrl);
+    const menuData = await data.json();
     CreateNavMenu(menuData, navClick, navbar);
     document.querySelectorAll(".a")[0].click();
   } 
@@ -50,14 +50,19 @@ const swapiApi = (async function () {
         keyName = keyName.charAt(0).toUpperCase() + keyName.slice(1);
         if (!ignor.includes(key)) {
           if (key == "homeworld" && value != null) {
-            let homeworld = await getData(value);
-            console.log(homeworld);
-            console.log("--------------------");
+            let homeworld = await getData(value);            
             card.insertAdjacentHTML(
               "beforeend",
               `<span class="key">${keyName}: </span><span class="value">${homeworld.name}</span><br>`
+            );            
+          } 
+          else if (value == null) {
+            card.insertAdjacentHTML(
+              "beforeend",
+              `<span class="key">${keyName}: </span><span class="value">n/a</span><br>`
             );
-          } else {
+          }
+          else {
             card.insertAdjacentHTML(
               "beforeend",
               `<span class="key">${keyName}: </span><span class="value">${value}</span><br>`
