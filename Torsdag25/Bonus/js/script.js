@@ -1,14 +1,23 @@
+import { ignor } from "./modules/filter.js";
+
 const swapiApi = (async function () {
   // IIFE STARTLINE
 
-  const baseUrl = "https://swapi.dev/api/"; // Opret en konstant, der indeholder URL'en til API'et
-  const navbar = document.getElementById("navbar"); // Opret en variabel, der indeholder menuBar-elementet
-  const cardContainer = document.getElementById("cardContainer"); // Opret en variabel, der indeholder main-elementet
+  const baseUrl = "https://swapi.dev/api/";
+  const navbar = document.getElementById("navbar");
+  const cardContainer = document.getElementById("cardContainer");
 
   try {
     const response = await fetch(baseUrl);
     const menuData = await response.json();
+    CreateNavMenu(menuData, navClick, navbar);
+    document.querySelectorAll(".a")[0].click();
+  } 
+  catch (error) {
+    console.log(error);
+  }
 
+  function CreateNavMenu(menuData, navClick, navbar) {
     for (let menuItem in menuData) {
       let navA = document.createElement("a");
       navA.addEventListener("click", navClick);
@@ -17,57 +26,61 @@ const swapiApi = (async function () {
       navA.href = menuData[menuItem];
       navbar.appendChild(navA);
     }
-  } catch (error) {
-    console.log(error);
   }
 
   async function navClick(e) {
     e.preventDefault();
     let data = await getData(this.href);
-    navA = document.querySelector(".active")?.classList.remove("active");
+    let navA = document.querySelector(".active");
+    navA?.classList.remove("active");
     this.classList.add("active");
 
     cardContainer.innerHTML = "";
 
-    data.results.forEach(async(dataItem) => {
+    ShowData(data);
+  }
+
+  async function ShowData(data) {
+    
+    for (let dataItem of data.results) {
       let card = document.createElement("div");
       card.className = "card";
       for (let [key, value] of Object.entries(dataItem)) {
         let keyName = key.replace("_", " ");
-        if (value instanceof Array) {
-          // Hvis værdien er en instans af Array
-          console.log(value); // Udskriv værdien i konsollen
-          let len = value.length; // Opret en variabel, der indeholder længden af værdien
-          card.insertAdjacentHTML(
-            "beforeend",
-            `<span class="key">${keyName}: </span><span class="key">${len}</span><br>`
-          ); // Indsæt en ny linje i card-elementet med key og længden af værdien
-        } else if (key === "homeworld") {
-          // Hvis key er lig med "homeworld"
-          let homeworld = await getData(value); // Opret en variabel, der indeholder svaret fra getData-funktionen
-          card.insertAdjacentHTML(
-            "beforeend", // Indsæt en ny linje i card-elementet med key og navnet på homeworld
-            `<span class="key">${keyName}: </span><span class="value">${homeworld.name}</span><br>`
-          );
-        } else {
-          card.insertAdjacentHTML(
-            // Indsæt en ny linje i card-elementet med key og værdien
-            "beforeend",
-            `<span class="key">${keyName}: </span><span class="value">${value}</span><br>`
-          );
+        keyName = keyName.charAt(0).toUpperCase() + keyName.slice(1);
+        if (!ignor.includes(key)) {
+          if (key == "homeworld") {
+            let homeworld = await getData(value);
+            console.log(homeworld);
+            card.insertAdjacentHTML(
+              "beforeend",
+              `<span class="key">${keyName}: </span><span class="value">${homeworld.name}</span><br>`
+            );
+          } else {
+            card.insertAdjacentHTML(
+              "beforeend",
+              `<span class="key">${keyName}: </span><span class="value">${value}</span><br>`
+            );
+          }
         }
       }
-      cardContainer.appendChild(card); // Tilføj card-elementet som et barn til main-elementet
-    });
+      cardContainer.appendChild(card);
+    }
   }
 
   async function getData(url) {
-    // Opret en asynkron funktion, der tager en URL som argument
     try {
-      const response = await fetch(url); // Udfør en asynkron fetch-anmodning til URL'en
-      return await response.json(); // Konverter svaret til JSON-format
+     // console.log(url);
+      const response = await fetch(url);
+
+      return await response.json();
     } catch (error) {
-      console.log(error); // Håndter eventuelle fejl ved at udskrive dem i konsollen
+      console.log(error);
     }
   }
+
+
 })(); // IIFE ENDLINE
+
+
+
