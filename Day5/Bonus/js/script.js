@@ -49,9 +49,10 @@ const swapiApi = (async function () {
         let keyName = key.replace("_", " ");
         keyName = keyName.charAt(0).toUpperCase() + keyName.slice(1);
         if (!ignor.includes(key)) {
-          if (key == "homeworld") {
+          if (key == "homeworld" && value != null) {
             let homeworld = await getData(value);
             console.log(homeworld);
+            console.log("--------------------");
             card.insertAdjacentHTML(
               "beforeend",
               `<span class="key">${keyName}: </span><span class="value">${homeworld.name}</span><br>`
