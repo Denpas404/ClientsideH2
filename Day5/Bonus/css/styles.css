@@ -8,6 +8,7 @@ body {
   background-image: url(../img/mink-mingle-NORa8-4ohA0-unsplash.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center bottom;
 }
 
 .wrapper {
