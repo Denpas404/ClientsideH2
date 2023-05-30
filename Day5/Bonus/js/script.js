@@ -61,7 +61,7 @@ const swapiApi = (async function () {
       if (key == "homeworld" && value != null) {
         let homeworld = await getData(value);        
         content += `<span class="key">${keyName}:&nbsp;&nbsp;</span><span class="value">${homeworld.name}</span><br><hr>`;
-      } else if (value == null) {
+      } else if (key == "homeworld" && value == null) {
         content += `<span class="key">${keyName}:&nbsp;&nbsp;</span><span class="value">n/a</span><br><hr>`;
       } else {
         content += `<span class="key">${keyName}:&nbsp;&nbsp;</span><span class="value">${value}</span><br><hr>`;

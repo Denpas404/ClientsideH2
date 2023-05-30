@@ -5,7 +5,6 @@ const ignor = [
     "starships",
     "created",
     "edited",
-    "url",
     "residents",
     "characters",
     "planets",
